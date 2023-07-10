@@ -1,0 +1,45 @@
+version: "3"
+services:
+  Apache-PHP:
+    image: php:apache
+    container_name: "Apache-PHP"
+    volumes:
+      - "/Users/yanny/source/www:/var/www/html"
+    ports:
+      - 8000:80
+  Mysql-Whendy:
+    image: mysql:latest
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: "Mysql-8"
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    ports:
+      - "3306:3306"
+    volumes:
+      - "/Users/yanny/databases/mysql:/var/lib/mysql"
+  Postgres:
+    image: postgres:latest
+    restart: always
+    container_name: "postgres"
+    environment:
+      - POSTGRES_PASSWORD=12345678
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - "/Users/yanny/databases/postgres:/var/lib/postgresql/data"
+    ports:
+        - "5432:5432"  
+  Mongo:
+      image: mongo
+      restart: always
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: "root"
+        MONGO_INITDB_ROOT_PASSWORD: "123456"
+      ports:
+        - "27017:27017" 
+      volumes:
+        - "/Users/yanny/databases/mongo:/data/db"
+    
+
+
