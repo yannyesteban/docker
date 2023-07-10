@@ -1,12 +1,12 @@
-version: "3"
+version: "3.8"
 services:
-  Apache-PHP:
-    image: php:apache
+  apache-php:
+    build: .
     container_name: "Apache-PHP"
     volumes:
       - "/Users/yanny/source/www:/var/www/html"
     ports:
-      - 8000:80
+      - 80:80
   Mysql-Whendy:
     image: mysql:latest
     restart: always
